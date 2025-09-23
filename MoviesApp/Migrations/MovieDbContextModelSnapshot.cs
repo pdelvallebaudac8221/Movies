@@ -22,6 +22,47 @@ namespace MoviesApp.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
+            modelBuilder.Entity("MoviesApp.Entities.Genre", b =>
+                {
+                    b.Property<string>("GenreId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("GenreId");
+
+                    b.ToTable("Genres");
+
+                    b.HasData(
+                        new
+                        {
+                            GenreId = "C",
+                            Name = "Comedy"
+                        },
+                        new
+                        {
+                            GenreId = "D",
+                            Name = "Drama"
+                        },
+                        new
+                        {
+                            GenreId = "A",
+                            Name = "Action"
+                        },
+                        new
+                        {
+                            GenreId = "S",
+                            Name = "Sci-Fi"
+                        },
+                        new
+                        {
+                            GenreId = "H",
+                            Name = "Horror"
+                        });
+                });
+
             modelBuilder.Entity("MoviesApp.Entities.Movie", b =>
                 {
                     b.Property<int>("MovieId")
@@ -29,6 +70,10 @@ namespace MoviesApp.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("MovieId"), 1L, 1);
+
+                    b.Property<string>("GenreId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -44,12 +89,15 @@ namespace MoviesApp.Migrations
 
                     b.HasKey("MovieId");
 
+                    b.HasIndex("GenreId");
+
                     b.ToTable("Movies");
 
                     b.HasData(
                         new
                         {
                             MovieId = 1,
+                            GenreId = "D",
                             Name = "Casablanca",
                             Rating = 5,
                             Year = 1942
@@ -57,6 +105,7 @@ namespace MoviesApp.Migrations
                         new
                         {
                             MovieId = 2,
+                            GenreId = "C",
                             Name = "Annie Hall",
                             Rating = 5,
                             Year = 1977
@@ -64,10 +113,22 @@ namespace MoviesApp.Migrations
                         new
                         {
                             MovieId = 3,
+                            GenreId = "A",
                             Name = "Apocalypse Now",
                             Rating = 4,
                             Year = 1979
                         });
+                });
+
+            modelBuilder.Entity("MoviesApp.Entities.Movie", b =>
+                {
+                    b.HasOne("MoviesApp.Entities.Genre", "Genre")
+                        .WithMany()
+                        .HasForeignKey("GenreId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Genre");
                 });
 #pragma warning restore 612, 618
         }

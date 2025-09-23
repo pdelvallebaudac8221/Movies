@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-
+using Microsoft.EntityFrameworkCore;
 using MoviesApp.Entities;
 
 namespace MoviesApp.Controllers
@@ -17,7 +17,7 @@ namespace MoviesApp.Controllers
         {
             // Use the db conext object to query for all our movies from the DB
             // and order them by name:
-            List<Movie> movies = _movieDbContext.Movies.OrderBy(m => m.Name).ToList();
+            List<Movie> movies = _movieDbContext.Movies.Include(m => m.Genre).ToList().OrderBy(m => m.Name).ToList();
 
             // and pass that list off to the view:
             return View(movies);

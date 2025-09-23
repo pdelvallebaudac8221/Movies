@@ -11,6 +11,7 @@
             <th>Name</th>
             <th>Year</th>
             <th>Rating</th>
+            <th>Genre</th>
             <th>Action</th>
         </tr>
     </thead>
@@ -21,6 +22,7 @@
                 <td>@movie.Name</td>
                 <td>@movie.Year</td>
                 <td>@movie.Rating</td>
+                <td>@movie.Genre.Name</td>
                 <td>
                     <a
                         asp-controller="Movies"
