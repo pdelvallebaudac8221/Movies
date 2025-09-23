@@ -1,0 +1,33 @@
+﻿@model Movie
+
+@{
+    ViewData["Title"] = "Add a new movie";
+}
+
+<!-- we set up this POST request will be handled: -->
+<form asp-controller="Movies" asp-action="Edit" method="post" enctype="application/x-www-form-urlencoded">
+    <!-- placeholder for validation errs: -->
+    <div class="text-danger" asp-validation-summary="All"></div>
+    
+    <input type="hidden" asp-for="MovieId">
+
+    <!-- an input field and label that bind to The name prop on Movie objects: -->
+    <div class="form-group">
+        <label asp-for="Name">Name</label>
+        <input type="text" asp-for="Name" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Year">Year</label>
+        <input type="text" asp-for="Year" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Rating">Rating</label>
+        <input type="text" asp-for="Rating" class="form-control" />
+    </div>
+
+    <!-- add a submit button and cancel link but both style as Bootstrap buttons:  -->
+    <button type="submit" class="btn btn-primary">Edit</button>
+    <a asp-controller="Movies" asp-action="List" class="btn btn-primary">Cancel</a>
+</form>

@@ -55,7 +55,51 @@ namespace MoviesApp.Controllers
                 return View(movie);
             }
         }
+        
+        [HttpGet]
+        public IActionResult Delete(int id)
+        {
+            var movie = _movieDbContext.Movies.Find(id);
+            return View(movie);
+        }
 
+        [HttpPost]
+        public IActionResult Delete(Movie movie)
+        {
+            _movieDbContext.Movies.Remove(movie);
+            _movieDbContext.SaveChanges();
+            return RedirectToAction("List", "Movies");
+        }
+
+        [HttpGet]
+        public IActionResult Edit(int id)
+        {
+            var movie = _movieDbContext.Movies.Find(id);
+            return View(movie);
+        }
+
+        [HttpPost]
+        public IActionResult Edit(Movie movie)
+        {
+            // check validity first 
+            if (ModelState.IsValid)
+            {
+                // it's valid using the db context object 
+                // we add the movie to the DB & dave changes:
+                _movieDbContext.Movies.Update(movie);
+                _movieDbContext.SaveChanges();
+
+                // redirect to the all movies view:
+                return RedirectToAction("List", "Movies");
+            }
+            else
+            {
+                // invalid so simply return the movie to view
+                // and validn errs will appear:
+                return View(movie);
+            }
+        }
+        
         private MovieDbContext _movieDbContext;
     }
 }

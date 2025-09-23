@@ -22,10 +22,20 @@
                 <td>@movie.Year</td>
                 <td>@movie.Rating</td>
                 <td>
-                    <a href="#">Edit</a>
+                    <a
+                        asp-controller="Movies"
+                        asp-action="Edit"
+                        asp-route-id="@movie.MovieId">
+                        Edit
+                    </a>
                     <!-- add 1 pixel margin on the left and right (i.e. x dirn) of the | -->
                     <span class="mx-1">|</span>
-                    <a href="#">Delete</a>
+                    <a
+                        asp-controller="Movies"
+                        asp-action="Delete"
+                        asp-route-id="@movie.MovieId">
+                        Delete
+                    </a>
                 </td>
             </tr>
         }
