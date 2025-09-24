@@ -17,8 +17,9 @@ namespace MoviesApp.Entities
 
         // Define a get/set property to access our Movie
         // objects from/to the DB:
-        public DbSet<Movie> Movies { get; set; }
-        public DbSet<Genre> Genres { get; set; }
+        public DbSet<Movie> Movies { get; set; } = null!;
+        public DbSet<Genre> Genres { get; set; } = null!;
+    
 
         /// <summary>
         /// Overiding the base class version of this handler method
