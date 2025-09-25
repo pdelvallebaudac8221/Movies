@@ -27,6 +27,7 @@ namespace MoviesApp.Controllers
         public IActionResult Create()
         {
             // return an initialized movie object:
+            ViewBag.Genres = _movieDbContext.Genres.OrderBy(m => m.Name).ToList();
             return View(new Movie());
         }
 
@@ -52,6 +53,7 @@ namespace MoviesApp.Controllers
             {
                 // invalid so simply return the movie to view
                 // and validn errs will appear:
+                ViewBag.Genres = _movieDbContext.Genres.OrderBy(m => m.Name).ToList();
                 return View(movie);
             }
         }
@@ -75,6 +77,7 @@ namespace MoviesApp.Controllers
         public IActionResult Edit(int id)
         {
             var movie = _movieDbContext.Movies.Find(id);
+            ViewBag.Genres = _movieDbContext.Genres.OrderBy(m => m.Name).ToList();
             return View(movie);
         }
 
