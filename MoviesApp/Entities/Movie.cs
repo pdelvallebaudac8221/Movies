@@ -48,5 +48,7 @@ namespace MoviesApp.Entities
         [Required(ErrorMessage = "Please a genre for the movie.")]
         public string GenreId { get; set; } = string.Empty;
         
+        public string Slug => Name?.Replace(' ', '-').ToLower() + '-' +  Year?.ToString();
+        
     }
 }

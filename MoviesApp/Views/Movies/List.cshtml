@@ -27,7 +27,8 @@
                     <a
                         asp-controller="Movies"
                         asp-action="Edit"
-                        asp-route-id="@movie.MovieId">
+                        asp-route-id="@movie.MovieId"
+                        asp-route-slug="@movie.Slug">
                         Edit
                     </a>
                     <!-- add 1 pixel margin on the left and right (i.e. x dirn) of the | -->
