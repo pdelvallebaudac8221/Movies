@@ -1,5 +1,5 @@
 using Microsoft.EntityFrameworkCore;
-
+using MoviesApp.Services;
 using MoviesApp.Entities;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -18,6 +18,8 @@ var connStr = builder.Configuration.GetConnectionString("Movies");
 // Setting up the use of our DbContext object and telling it to use
 // MS SQL Service and access the DB using the connection string we pass:
 builder.Services.AddDbContext<MovieDbContext>(options => options.UseSqlServer(connStr));
+
+builder.Services.AddTransient<IMovieService, MovieService>();
 
 builder.Services.AddControllersWithViews();
 

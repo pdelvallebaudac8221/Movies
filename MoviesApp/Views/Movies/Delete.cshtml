@@ -1,21 +1,17 @@
-@model Movie
+﻿@model Movie
 
 @{
     ViewData["Title"] = "Delete a movie";
 }
 
-<!-- Text to confirm which movie we are deleting -->
+<h2>Confirm Deletion</h2>
+<h3>@Model.Name (@Model.Year)</h3>
 
-<h1>Confirm Deletion</h1>
-<h2>@Model.Name (@Model.Year)</h2>
+<form asp-action="Delete" method="post">
 
-<!-- Buttons to confirm deletion or go back -->
+    <input type="hidden" asp-for="MovieId" />
 
-<form asp-controller="Movies" asp-action="Delete" method="post" class="btn-group">
-    <!-- Provide information about the movie that should be deleted --> 
-    <input type="hidden" asp-for="MovieId">
-    
-    <!-- Buttons -->
-    <button type="submit" class="btn btn-danger">Delete</button>
-    <a asp-controller="Movies" asp-action="List" class="btn btn-secondary">Cancel</a>
+    <button type="submit" class="btn btn-primary">Delete</button>
+    <a asp-controller="Movies" asp-action="List" class="btn btn-primary">Cancel</a>
+
 </form>

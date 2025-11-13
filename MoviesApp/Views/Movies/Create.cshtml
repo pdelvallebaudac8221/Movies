@@ -19,10 +19,11 @@
         <label asp-for="Year">Year</label>
         <input type="text" asp-for="Year" class="form-control" />
     </div>
-    
+
     <div class="form-group">
-        <label asp-for="GenreId">Genre</label>
+        <label asp-for="GenreId" class="form-label">Genre</label>
         <select asp-for="GenreId" class="form-select">
+            <option value="">select a genre</option>
             @foreach (Genre g in ViewBag.Genres)
             {
                 <option value="@g.GenreId">@g.Name</option>
@@ -37,5 +38,5 @@
 
     <!-- add a submit button and cancel link but both style as Bootstrap buttons:  -->
     <button type="submit" class="btn btn-primary">Add</button>
-    <a asp-controller="Movies" asp-action="List" class="btn btn-secondary">Cancel</a>
+    <a asp-controller="Movies" asp-action="List" class="btn btn-primary">Cancel</a>
 </form>

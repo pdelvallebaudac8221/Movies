@@ -1,15 +1,13 @@
 ﻿@model Movie
 
 @{
-    ViewData["Title"] = "Add a new movie";
+    ViewData["Title"] = "Edit a movie";
 }
 
 <!-- we set up this POST request will be handled: -->
 <form asp-controller="Movies" asp-action="Edit" method="post" enctype="application/x-www-form-urlencoded">
     <!-- placeholder for validation errs: -->
     <div class="text-danger" asp-validation-summary="All"></div>
-    
-    <input type="hidden" asp-for="MovieId">
 
     <!-- an input field and label that bind to The name prop on Movie objects: -->
     <div class="form-group">
@@ -21,10 +19,11 @@
         <label asp-for="Year">Year</label>
         <input type="text" asp-for="Year" class="form-control" />
     </div>
-    
+
     <div class="form-group">
-        <label asp-for="GenreId">Genre</label>
+        <label asp-for="GenreId" class="form-label">Genre</label>
         <select asp-for="GenreId" class="form-select">
+            <option value="">select a genre</option>
             @foreach (Genre g in ViewBag.Genres)
             {
                 <option value="@g.GenreId">@g.Name</option>
@@ -37,7 +36,9 @@
         <input type="text" asp-for="Rating" class="form-control" />
     </div>
 
+    <input type="hidden" asp-for="MovieId" />
+
     <!-- add a submit button and cancel link but both style as Bootstrap buttons:  -->
     <button type="submit" class="btn btn-primary">Edit</button>
-    <a asp-controller="Movies" asp-action="List" class="btn btn-secondary">Cancel</a>
+    <a asp-controller="Movies" asp-action="List" class="btn btn-primary">Cancel</a>
 </form>

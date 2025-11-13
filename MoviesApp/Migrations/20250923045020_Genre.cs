@@ -35,8 +35,10 @@ namespace MoviesApp.Migrations
                     { "A", "Action" },
                     { "C", "Comedy" },
                     { "D", "Drama" },
-                    { "H", "Horror" },
-                    { "S", "Sci-Fi" }
+                    { "H", "Horro" },
+                    { "M", "Musical" },
+                    { "R", "RomCom" },
+                    { "S", "SciFi" }
                 });
 
             migrationBuilder.UpdateData(
@@ -51,14 +53,14 @@ namespace MoviesApp.Migrations
                 keyColumn: "MovieId",
                 keyValue: 2,
                 column: "GenreId",
-                value: "C");
+                value: "A");
 
             migrationBuilder.UpdateData(
                 table: "Movies",
                 keyColumn: "MovieId",
                 keyValue: 3,
                 column: "GenreId",
-                value: "A");
+                value: "R");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Movies_GenreId",

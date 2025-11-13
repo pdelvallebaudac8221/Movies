@@ -1,14 +1,8 @@
-﻿using System.ComponentModel.DataAnnotations;
-using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
+﻿using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
+using System.ComponentModel.DataAnnotations;
 
 namespace MoviesApp.Entities
 {
-    public class Genre
-    {
-        public string GenreId { get; set; } = string.Empty;
-        public string Name { get; set; } = string.Empty;
-    }
-    
     /// <summary>
     /// This is a class of objects representing the primary domain 
     /// object for this simple App - i.e. they represent basic movies.
@@ -17,6 +11,14 @@ namespace MoviesApp.Entities
     /// 
     /// Note: it's typically best to make entity props be nullable.
     /// </summary>
+    /// 
+    public class Genre
+    {
+        public string GenreId { get; set; } = string.Empty;
+        public string Name { get; set; } = string.Empty;
+    }
+
+
     public class Movie
     {
         /// <summary>
@@ -40,15 +42,13 @@ namespace MoviesApp.Entities
         [Required(ErrorMessage = "Please a rating for the movie.")]
         [Range(1, 5, ErrorMessage = "Movie ratings must be between 1 and 5.")]
         public int? Rating { get; set; }
-        
-        // movie genre
-        [ValidateNever]
-        public Genre Genre { get; set; } = null!;
-        
-        [Required(ErrorMessage = "Please a genre for the movie.")]
+
+        [Required(ErrorMessage = "Please enter a genre.")]
         public string GenreId { get; set; } = string.Empty;
-        
-        public string Slug => Name?.Replace(' ', '-').ToLower() + '-' +  Year?.ToString();
-        
+
+        [ValidateNever]
+        public Genre Genre { get; set; } = null;
+
+        public String Slug => Name?.Replace(' ', '-').ToLower() + '-' + Year?.ToString();
     }
 }

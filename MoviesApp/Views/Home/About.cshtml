@@ -1,17 +1,10 @@
-﻿@{
-    ViewData["Title"] = "About";
-    ViewData["First Name"] = "Piero";
-    ViewData["Last Name"] = "del Valle";
+﻿@inject MoviesApp.Services.IMovieService MovieService
+@{
+    ViewData["Title"] = "About Me";
+    Movie? favoriteMovie = MovieService.GetMovieById(1);
 }
-<h1>@ViewData["First Name"] @ViewData["Last Name"]</h1>
+<h1>@ViewData["Title"]</h1>
 
-<p>Hi, I'm @ViewData["First Name"], Student No. 8858221. I am currently enrolled in Computer Applications Development &commat; Conestoga.</p>
+<p>I am Piero del Valle.</p>
 
-<h2>Experience</h2>
-<ul>
-    <li>HTML/CSS</li>
-    <li>Javascript</li>
-    <li>Express</li>
-    <li>Node</li>
-    <li>MongoDB</li>
-</ul>
+<p>My favorite Movie is @favoriteMovie.Name released in @favoriteMovie.Year</p>

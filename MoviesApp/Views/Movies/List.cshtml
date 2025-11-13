@@ -10,8 +10,8 @@
         <tr>
             <th>Name</th>
             <th>Year</th>
-            <th>Rating</th>
             <th>Genre</th>
+            <th>Rating</th>
             <th>Action</th>
         </tr>
     </thead>
@@ -21,24 +21,13 @@
             <tr>
                 <td>@movie.Name</td>
                 <td>@movie.Year</td>
-                <td>@movie.Rating</td>
                 <td>@movie.Genre.Name</td>
+                <td>@movie.Rating</td>
                 <td>
-                    <a
-                        asp-controller="Movies"
-                        asp-action="Edit"
-                        asp-route-id="@movie.MovieId"
-                        asp-route-slug="@movie.Slug">
-                        Edit
-                    </a>
+                    <a asp-controller="Movies" asp-action="Edit" asp-route-id="@movie.MovieId" asp-route-slug="@movie.Slug">Edit</a>
                     <!-- add 1 pixel margin on the left and right (i.e. x dirn) of the | -->
                     <span class="mx-1">|</span>
-                    <a
-                        asp-controller="Movies"
-                        asp-action="Delete"
-                        asp-route-id="@movie.MovieId">
-                        Delete
-                    </a>
+                    <a asp-controller="Movies" asp-action="Delete" asp-route-id="@movie.MovieId" asp-route-slug="@movie.Slug">Delete</a>
                 </td>
             </tr>
         }

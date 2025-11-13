@@ -12,7 +12,7 @@ using MoviesApp.Entities;
 namespace MoviesApp.Migrations
 {
     [DbContext(typeof(MovieDbContext))]
-    [Migration("20250923190801_Genre")]
+    [Migration("20250923045020_Genre")]
     partial class Genre
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -40,6 +40,11 @@ namespace MoviesApp.Migrations
                     b.HasData(
                         new
                         {
+                            GenreId = "A",
+                            Name = "Action"
+                        },
+                        new
+                        {
                             GenreId = "C",
                             Name = "Comedy"
                         },
@@ -50,18 +55,23 @@ namespace MoviesApp.Migrations
                         },
                         new
                         {
-                            GenreId = "A",
-                            Name = "Action"
+                            GenreId = "H",
+                            Name = "Horro"
+                        },
+                        new
+                        {
+                            GenreId = "M",
+                            Name = "Musical"
+                        },
+                        new
+                        {
+                            GenreId = "R",
+                            Name = "RomCom"
                         },
                         new
                         {
                             GenreId = "S",
-                            Name = "Sci-Fi"
-                        },
-                        new
-                        {
-                            GenreId = "H",
-                            Name = "Horror"
+                            Name = "SciFi"
                         });
                 });
 
@@ -107,7 +117,7 @@ namespace MoviesApp.Migrations
                         new
                         {
                             MovieId = 2,
-                            GenreId = "C",
+                            GenreId = "A",
                             Name = "Annie Hall",
                             Rating = 5,
                             Year = 1977
@@ -115,7 +125,7 @@ namespace MoviesApp.Migrations
                         new
                         {
                             MovieId = 3,
-                            GenreId = "A",
+                            GenreId = "R",
                             Name = "Apocalypse Now",
                             Rating = 4,
                             Year = 1979
